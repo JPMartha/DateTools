@@ -156,7 +156,7 @@ static NSCalendar *implicitCalendar = nil;
     else if (components.day >= 2) {
         return [self logicLocalizedStringFromFormat:@"%%d %@days ago" withValue:components.day];
     }
-    else if (isYesterday) {
+    else if (isYesterday && [self hoursAgo] > 24) {
         if (useNumericDates) {
             return DateToolsLocalizedStrings(@"1 day ago");
         }
@@ -224,7 +224,7 @@ static NSCalendar *implicitCalendar = nil;
     else if (components.day >= 2) {
         return [self logicLocalizedStringFromFormat:@"%%d%@d" withValue:components.day];
     }
-    else if (isYesterday) {
+    else if (isYesterday && [self hoursAgo] > 24) {
         return [self logicLocalizedStringFromFormat:@"%%d%@d" withValue:1];
     }
     else if (components.hour >= 1) {
